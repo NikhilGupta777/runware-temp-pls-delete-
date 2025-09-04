@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card } from './ui/Card';
 import { Spinner } from './ui/Spinner';
@@ -7,7 +6,6 @@ interface ImageDisplayProps {
   images: string[];
   isLoading: boolean;
   error: string | null;
-  usage: number | null;
 }
 
 const WelcomeMessage: React.FC = () => (
@@ -39,7 +37,7 @@ const ErrorDisplay: React.FC<{ message: string }> = ({ message }) => (
   </div>
 );
 
-const ImageGrid: React.FC<{ images: string[], usage: number | null }> = ({ images, usage }) => (
+const ImageGrid: React.FC<{ images: string[] }> = ({ images }) => (
     <div>
         <div className="grid grid-cols-1 gap-4 p-4">
             {images.map((base64, index) => (
@@ -62,20 +60,15 @@ const ImageGrid: React.FC<{ images: string[], usage: number | null }> = ({ image
             </div>
             ))}
         </div>
-        {usage !== null && (
-            <div className="text-center text-xs text-gray-500 pb-4">
-                Credits used: {usage.toFixed(2)}
-            </div>
-        )}
     </div>
 );
 
-const ImageDisplay: React.FC<ImageDisplayProps> = ({ images, isLoading, error, usage }) => {
+const ImageDisplay: React.FC<ImageDisplayProps> = ({ images, isLoading, error }) => {
   return (
     <Card className="flex items-center justify-center min-h-full p-4 bg-gray-800/50">
       {isLoading && <LoadingState />}
       {!isLoading && error && <ErrorDisplay message={error} />}
-      {!isLoading && !error && images.length > 0 && <ImageGrid images={images} usage={usage} />}
+      {!isLoading && !error && images.length > 0 && <ImageGrid images={images} />}
       {!isLoading && !error && images.length === 0 && <WelcomeMessage />}
     </Card>
   );

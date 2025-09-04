@@ -1,0 +1,5 @@
+{
+  "name": "Runware AI Image Generator",
+  "description": "A web application to generate images from text prompts using the Runware AI API. Enter a prompt, adjust the settings, and let the AI create unique visuals.",
+  "requestFramePermissions": []
+}
